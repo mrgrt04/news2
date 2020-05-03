@@ -2,13 +2,13 @@ import pandas as pd
 import streamlit as st
 import yfinance
 
+
 @st.cache
 def load_data():
     components = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')[0]
     return components.drop('SEC filings', axis=1).set_index('Symbol')
 
 
-@st.cache(ignore_hash=True)
 def load_quotes(asset):
     return yfinance.download(asset)
 
